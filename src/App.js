@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import Home from "./screens/Home";
+import Header from "./screens/Header";
+import Login from "./screens/Login";
+import Registration from "./screens/Registration";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="main">
+        <Header />
       </header>
+      <Home />
+      {/*<Login />*/}
+      {/*<Registration />*/}
     </div>
   );
 }

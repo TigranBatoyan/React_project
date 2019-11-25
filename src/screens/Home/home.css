@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1%;
+    width:100%;
+}
+.main{
+    width:100%;
+    border:5px solid rgb(45, 127, 150);
+    border-radius: 10px;
+    padding: 1%;
+    display:flex;
+    justify-content: flex-end;
+}
