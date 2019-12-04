@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Description from "./descriptionList";
 import './descriptionContainer.css'
-import {url, endpoint_blog} from "../../Costants/costants";
+import {getPosts} from "../../API";
+import { Spinner } from "react-bootstrap";
 
 class Descriptions extends Component {
     constructor(props) {
@@ -13,20 +14,12 @@ class Descriptions extends Component {
     }
 
     componentDidMount() {
-            fetch(`${url}${endpoint_blog}`)
-                .then(response => {
-                    if (response.ok && response.status === 200) {
-                        return response.json()
-                            .then(data => {
-                                this.setState({
-                                    descriptions: data,
-                                    loading: false
-                                })
-                            })
-                    }
-                }).catch(err => {
-                console.log('Error', err)
-            })
+           getPosts.then(data => {
+               this.setState({
+                   descriptions: data,
+                   loading: false
+               })
+           })
         }
 
     render() {
@@ -37,7 +30,7 @@ class Descriptions extends Component {
             <div className="container_item-right">
                 <div className="right_item-main" id="description">
                     {
-                        loading && <div>...Loading</div>
+                        loading && <Spinner animation="border" variant="primary" />
                     }
                     {
                         descriptions.map((description, index) => {

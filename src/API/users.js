@@ -1,57 +1,33 @@
-export const getUsers = () => {
-    const url='https://5d8e0901370f02001405c7c9.mockapi.io/api/v1/postblog/';
-    const endpoint='users';
-    const endpoint2='postblog';
+import {endpoint_user, url} from "../Costants/costants";
 
-    const $ = selector =>  document.querySelector(selector)
-
-
-    //users
-
-    const users = () => {
-        getUsers( data => {
-            fillContentName(data)
-        })
+class Users {
+    getUsers() {
+        return fetch(`${url}${endpoint_user}`)
+            .then(response => {
+                return response.json()
+            })
     }
 
-
-    const getUsers =  callback => {
-        fetch(`${url}${endpoint}`)
-            .then( response => {
-                return response.json()
-                    .then( data => {
-                        return data;
-                    });
+    loginHandler(data) {
+        return fetch(`${url}${endpoint_user}/login`,
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
-            .catch( err => {
-                console.log("Error", err);
-            });
-    };
+    }
 
-    const fillContentName = response => {
-        response.forEach( item => {
-
-            //img
-            let photo=document.createElement('img')
-            photo.classList.add('avatar')
-            photo.setAttribute('src',item.avatar)
-
-
-            //name
-            let name=document.createElement('label')
-            name.innerText=item.name;
-            name.classList.add('name')
-
-
-            //mainContent
-            let row=document.createElement('div');
-            row.appendChild(photo);
-            row.appendChild(name);
-            row.classList.add('list')
-
-            // content.appendChild(row)
-        })
-    };
-
-    users()
-}
+    registerHandler(data) {
+        return  fetch(`${url}${endpoint_user}`,
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+    }
+};
+export default Users

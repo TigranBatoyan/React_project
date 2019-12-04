@@ -1,32 +1,31 @@
-import React,{useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import UserList from "./userList";
 import './usersContainer.css';
-import {url, endpoint_user} from "../../Costants/costants";
+import {getUsers} from "../../API";
+import { Spinner } from "react-bootstrap";
 
-const UsersContainer = () =>{
-    const[users,setUsers] = useState([])
-    const[loading,setLoading] = useState(true)
-    useEffect(()=>{
-        fetch(`${url}${endpoint_user}`)
-            .then( response => {
-                return response.json()
-                    .then( data => {
-                        setUsers(data);
-                        setLoading(false)
-                    });
-            })
-            .catch( err => {
+const UsersContainer = () => {
+
+    const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        getUsers.then(data => {
+            setUsers(data);
+            setLoading(false)
+        })
+            .catch(err => {
                 console.log("Error", err);
             });
-    },[])
-    return(
+    }, [])
+    return (
         <div className="container_item-left" id='content'>
             {
-                loading && <div>...Loading</div>
+                loading && <Spinner animation="border" variant="primary" />
             }
             {
                 users.map(user => {
-                    return <UserList key={user.id} user={user} />
+                    return <UserList key={user.id} user={user}/>
                 })
             }
 

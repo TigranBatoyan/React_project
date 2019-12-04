@@ -1,5 +1,5 @@
-export const url = 'https://5d8e0901370f02001405c7c9.mockapi.io/api/v1/postblog/';
+export const url = 'https://it-blog-posts.herokuapp.com/api/';
 
-export const endpoint_blog = 'postblog';
+export const endpoint_blog = 'posts';
 
-export const endpoint_user='users';
+export const endpoint_user='people';

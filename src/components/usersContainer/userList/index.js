@@ -4,8 +4,8 @@ import './userList.css'
 const UserList = ({user}) =>{
     return(
         <div className='list'>
-            <img src={user.avatar}  alt="" className='avatar' />
-            <label className='name'>{user.name}</label>
+            {/*<img src={user.avatar}  alt="" className='avatar' />*/}
+            <label className='name'>{user.username}</label>
         </div>
     )
 }

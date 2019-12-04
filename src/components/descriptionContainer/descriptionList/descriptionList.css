@@ -17,8 +17,9 @@
     box-shadow: 2px 2px silver;
     border:2px solid rgb(216, 231, 240);
     border-radius: 10px;
-    color:rgb(30, 30, 66);
+    overflow: hidden;
 }
 .right_item div{
-    padding: 1%
+    padding: 1%;
+    color: rgb(12, 99, 214);
 }
