@@ -8,7 +8,8 @@ const ShowModal = ({handleClose, show, userName}) => {
     const [data, setData] = useState(initialData)
 
     const submitDataHandler = () => {
-        addPost(data).then(res=>console.log(res))
+        addPost(data)
+        handleClose()
     }
 
     const createPost = ({target: {name, value}}) => {
