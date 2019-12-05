@@ -16,19 +16,21 @@ const Login = ({changeState, tab}) => {
 
 
     const onSubmitHandler = () => {
-        loginHandler(data).then(response => {
-            if (response.status === 200) {
-                setData(initialData)
-                return response.json()
-            }
-        })
-        .then(data =>{
-            const info=JSON.stringify({token:data.id,id:data.userId})
-            localStorage.setItem('user',info)
-            changeState('workspacePage')
-        }).catch(error=>{
-            throw new Error(error)
-        })
+        if(data.email && data.password){
+            loginHandler(data).then(response => {
+                if (response.status === 200) {
+                    setData(initialData)
+                    return response.json()
+                }
+            })
+                .then(data =>{
+                    const info=JSON.stringify({token:data.id,id:data.userId})
+                    localStorage.setItem('user',info)
+                    changeState('workspacePage')
+                }).catch(error=>{
+                throw new Error(error)
+            })
+        }
     }
         return (
             <div className="container_log">

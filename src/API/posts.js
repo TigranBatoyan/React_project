@@ -11,5 +11,16 @@ class Posts{
             console.log('Error', err)
         })
     }
+
+    addPost(data){
+        return fetch(`${url}${endpoint_blog}`,
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+    }
 }
 export default Posts
