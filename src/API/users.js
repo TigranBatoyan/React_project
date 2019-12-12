@@ -29,5 +29,13 @@ class Users {
                 }
             })
     }
+
+    getById(id){
+        return fetch(`${url}${endpoint_user}/${id}`)
+    }
+
+    getPostsById(id){
+        return fetch(`${url}${endpoint_user}/${id}/posts`)
+    }
 };
 export default Users

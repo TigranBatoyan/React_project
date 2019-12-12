@@ -1,22 +1,27 @@
 import React, {useState,useEffect} from "react";
 import {Button, Form, Modal} from "react-bootstrap";
-import {addPost} from "../../API";
+import {addPost, loginHandler} from "../../API";
+import storage from "../../Helpers/storage";
 
 const ShowModal = ({handleClose, show, userName}) => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = storage.get('user')
     const initialData = {author: userName, description: '', title: '', personId: user.id}
     const [data, setData] = useState(initialData)
 
-    const submitDataHandler = () => {
-        addPost(data)
-        handleClose()
-    }
+    useEffect(()=>{
+        setData({...data,author:userName})
+    },[userName])
 
     const createPost = ({target: {name, value}}) => {
         setData({
             ...data,
             [name]: value
         })
+    }
+
+    const submitDataHandler = () => {
+        addPost(data)
+        handleClose()
     }
 
     return (

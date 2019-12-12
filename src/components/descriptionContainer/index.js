@@ -16,7 +16,7 @@ class Descriptions extends Component {
     componentDidMount() {
            getPosts.then(data => {
                this.setState({
-                   descriptions: data,
+                   descriptions: data.reverse(),
                    loading: false
                })
            })

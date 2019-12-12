@@ -10,3 +10,5 @@ export const getUsers = Api.users.getUsers()
 export const loginHandler = Api.users.loginHandler
 export const registerHandler = Api.users.registerHandler
 export const addPost = Api.posts.addPost
+export const getById = Api.users.getById
+export const getPostsById = Api.users.getPostsById

@@ -2,32 +2,52 @@ import React, {useState, useEffect} from "react";
 import './workspace.css';
 import Header from "./header";
 import ItemList from "./ItemList";
-import ShowModal from './ShowModal'
+import ShowModal from './ShowModal';
+import {getById, getPostsById} from "../../API";
+import storage from "../../Helpers/storage";
+import { Spinner } from "react-bootstrap";
 
 const Workspace = () => {
-    const [show, setShow] = useState(false);
-    const [name, setName] = useState('')
+    const [state, setState] = useState({
+        show:false,
+        posts:[],
+        loading:true
+    })
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [name,setName] = useState('')
+    const {show,posts,loading} = state
 
+    const toggleButton = () => setState({...state,show:!show});
+    const user = storage.get('user')
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'))
-
-        fetch(`https://it-blog-posts.herokuapp.com/api/people/${user.id}`)
+        getById(user.id)
             .then(data => data.json()).then(data => setName(`${data.userName} ${data.lastName}`))
+
+        getPostsById(user.id)
+            .then(res=>res.json()).then(data=>{
+                setState({...state,posts: data.reverse(),loading: false})
+        })
         return () => {
-            localStorage.removeItem('user')
+            storage.remove('user')
         }
-    }, [])
+    },[])
+
     return (
         <>
             <main>
-                <Header name={name} handleShow={handleShow}/>
-                <ItemList/>
-                <ShowModal handleClose={handleClose} show={show} userName={name}/>
+                <Header name={name} handleShow={toggleButton}/>
+                <div className="right_item-main" id="description">
+                {
+                    loading && <Spinner animation="border" variant="primary" />
+                }
+                {
+                    posts.map(post=>{
+                        return <ItemList key={post.id} post={post}/>
+                    })
+                }
+                </div>
+                <ShowModal handleClose={toggleButton} show={show} userName={name}/>
             </main>
-            <footer></footer>
         </>
 
     )

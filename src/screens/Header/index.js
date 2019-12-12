@@ -1,11 +1,12 @@
 import React from 'react';
 import './header.css';
 import { Button } from 'react-bootstrap';
+import storage from "../../Helpers/storage";
 
 const Header = ({changeState, tab}) => {
    const removeToken = () =>{
        changeState('homePage')
-       localStorage.removeItem('user')
+       storage.remove('user')
    }
 
     return (

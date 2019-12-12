@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import './login.css';
 import {Form, Button} from "react-bootstrap";
 import {loginHandler} from "../../API";
+import storage from "../../Helpers/storage";
 
-const Login = ({changeState, tab}) => {
+const Login = ({changeState}) => {
     const initialData = {email:'',password:''}
     const [data, setData] = useState(initialData)
 
@@ -24,8 +25,8 @@ const Login = ({changeState, tab}) => {
                 }
             })
                 .then(data =>{
-                    const info=JSON.stringify({token:data.id,id:data.userId})
-                    localStorage.setItem('user',info)
+                    const info={token:data.id,id:data.userId}
+                    storage.set('user',info)
                     changeState('workspacePage')
                 }).catch(error=>{
                 throw new Error(error)
