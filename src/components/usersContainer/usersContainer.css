@@ -7,8 +7,8 @@
     overflow-y: scroll;
     padding: 1%;
     min-width: 160px;
-    background:linear-gradient(rgba(44, 46, 47, 0.62), rgba(5, 18, 40, 0.62));
-    color: rgb(12, 99, 214)
+    background:linear-gradient(rgba(5, 18, 40, 0.77), rgba(5, 18, 40, 0.84));
+    color: black
 }
 .avatar{
     width:50px;
@@ -25,4 +25,7 @@
     border-radius: 100%;
     border:1px solid rgb(216, 231, 240);
     display: inline-block
+}
+.name{
+    border-bottom:1px solid rgb(30, 9, 214);
 }

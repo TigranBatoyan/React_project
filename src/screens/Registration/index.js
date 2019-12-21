@@ -15,7 +15,7 @@ const Registration = () =>{
     }
 
     const handleSubmitData = () =>{
-        registerHandler(data).then(response=>setData(initialState))
+        registerHandler(data).then(response=>setData(data))
     }
     return(
         <div className="container_register">

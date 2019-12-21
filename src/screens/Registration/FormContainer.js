@@ -29,13 +29,6 @@ const FormContainer = ({changeInputValue, handleSubmitData, data}) =>{
                               onChange={changeInputValue} />
             </Form.Group>
 
-            <Form.Check custom inline id={`custom-inline-radio-1`} label="Male" name="formHorizontalRadios" type='radio' />
-            <Form.Check custom inline id={`custom-inline-radio-2`} label="Female" name="formHorizontalRadios" type='radio' />
-
-            <Form.Group id="formGridCheckbox">
-                <Form.Check custom id={`custom-checkbox`} type="checkbox" label="Send me email" />
-            </Form.Group>
-
             <Button variant="primary" type="submit" size="lg" block onClick={handleSubmitData}>
                 Submit
             </Button>

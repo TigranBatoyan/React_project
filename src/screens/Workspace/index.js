@@ -21,7 +21,7 @@ const Workspace = () => {
     const user = storage.get('user')
     useEffect(() => {
         getById(user.id)
-            .then(data => data.json()).then(data => setName(`${data.userName} ${data.lastName}`))
+            .then(data => data.json()).then(data => setName(`${data.username} ${data.lastname}`))
 
         getPostsById(user.id)
             .then(res=>res.json()).then(data=>{

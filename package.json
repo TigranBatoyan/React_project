@@ -2,10 +2,6 @@
   "homepage": "http://TigranBatoyan.github.io/React_project",
   "name": "main_project",
   "version": "0.1.0",
-  "production": [
-    ">0.2%",
-    "not dead",
-    "not op_mini all",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -16,7 +12,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -26,6 +22,10 @@
     "extends": "react-app"
   },
   "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
     "development": [
       "last 1 chrome version",
